@@ -13,7 +13,8 @@ public class ActionBlock extends GeneralBlock{
 	
 	public List getBlockDescr() {
 		List l = super.getBlockCoord();
+		l.add("Action Block");
 		l.add(Color.BLUE);
-		
+		return l;
 	}
 }
