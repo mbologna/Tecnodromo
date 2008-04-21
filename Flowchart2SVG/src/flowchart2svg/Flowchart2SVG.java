@@ -1,3 +1,19 @@
+/* da formalizzare bene */
+
+
+/*
+ * Ogni blocco generale è caratterizzato da x, y, w, h, e da un campo di testo sovraimpresso. 
+ * Cosa caratterizza i vari blocchi? La forma, il colore.
+ * Come si collegano i vari blocchi? Con una (o più) frecce che hanno un blocco di partenza e un blocco di arrivo.
+ * 
+ * Come può il programmatore produrre un diagramma SVG? 
+ * Crea una serie di blocchi, non generali. Li inserisce in una lista java.util. Passa la lista a Flowchart2SVG
+ * Flowchart2SVG come procede?
+ * - estrae ogni singolo elemento dalla lista
+ * - capisce di che tipo di blocco si tratta e genera il relativo disegno
+ * - chiama il generator di batik per creare il file XML corrispondente
+ */
+
 package flowchart2svg;
 
 import java.io.File;

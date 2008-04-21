@@ -1,20 +1,15 @@
 package blocks;
 
 import java.awt.Color;
-import java.util.List;
 
 public class ActionBlock extends GeneralBlock{
 	
-	private final Color actionBlockColor = Color.BLUE;
+	private static final Color actionBlockColor = Color.GRAY;
 	
-	public ActionBlock(int x, int y, int w, int h) {
-		super(x,y,w,h);
+	
+	public ActionBlock(int x, int y, int w, int h, String instruction) {
+		super(x,y,w,h,actionBlockColor,instruction);
+		this.
 	}
 	
-	public List getBlockDescr() {
-		List l = super.getBlockCoord();
-		l.add("Action Block");
-		l.add(Color.BLUE);
-		return l;
-	}
 }
