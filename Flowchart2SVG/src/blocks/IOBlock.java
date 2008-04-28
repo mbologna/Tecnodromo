@@ -13,9 +13,8 @@ public class IOBlock extends GeneralBlock{
 	}
 	
 	public void paint(Graphics2D g2d) {
-		g2d.setPaint(IOBlockColor);
-		g2d.drawOval(this.getX(),this.getY(),this.getWidth(),this.getHeight());
-		g2d.setPaint(Color.BLACK);
-		g2d.drawString(this.getInstruction(), this.getX(), this.getY());
+		g2d.setPaint(this.getBlockColor());
+		g2d.drawRoundRect(this.getX(), this.getY(), this.getWidth(), this.getHeight(),30,30);
+		super.paint(g2d);
 	}	
 }

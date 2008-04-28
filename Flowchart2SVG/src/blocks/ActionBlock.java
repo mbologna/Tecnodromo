@@ -5,7 +5,7 @@ import java.awt.Graphics2D;
 
 public class ActionBlock extends GeneralBlock{
 	
-	private static final Color actionBlockColor = Color.GRAY;
+	private static final Color actionBlockColor = new Color(255,238,204);
 	
 	
 	public ActionBlock(int x, int y, int w, int h, String instruction) {
@@ -14,10 +14,9 @@ public class ActionBlock extends GeneralBlock{
 	}
 	
 	public void paint(Graphics2D g2d) {
-		g2d.setPaint(actionBlockColor);
-		g2d.drawRect(this.getX(), this.getY(), getWidth(), getHeight());
-		g2d.setPaint(Color.BLACK);
-		g2d.drawString(this.getInstruction(), this.getX(), this.getY());
+		g2d.setPaint(this.getBlockColor());
+		g2d.fillRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
+		super.paint(g2d);
 	}
 	
 }

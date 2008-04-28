@@ -5,7 +5,7 @@ import java.awt.Graphics2D;
 
 public class InitialBlock extends GeneralBlock{
 	
-	private static final Color initialBlockColor = Color.YELLOW;
+	private static final Color initialBlockColor = Color.GREEN;
 	
 	public InitialBlock(int x, int y, int w, int h, String text) {
 		super(x,y,w,h, text);
@@ -13,10 +13,9 @@ public class InitialBlock extends GeneralBlock{
 	}
 	
 	public void paint(Graphics2D g2d) {
-		g2d.setPaint(initialBlockColor);
-		g2d.drawOval(this.getX(),this.getY(),this.getWidth(),this.getHeight());
-		g2d.setPaint(Color.BLACK);
-		g2d.drawString(this.getInstruction(), this.getX(), this.getY());
+		g2d.setPaint(this.getBlockColor());
+		g2d.fillRoundRect(this.getX(), this.getY(), this.getWidth(), this.getHeight(),30,30);
+		super.paint(g2d);
 	}	
 	
 }
