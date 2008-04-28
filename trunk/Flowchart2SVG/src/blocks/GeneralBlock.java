@@ -45,6 +45,9 @@ public abstract class GeneralBlock {
 		this.blockColor = blockColor;
 	}
 	
-	public abstract void paint(Graphics2D g2d);
+	public void paint(Graphics2D g2d) {
+		g2d.setPaint(Color.BLACK);
+		g2d.drawString(this.getInstruction(), this.getX()+this.getWidth()/3, this.getY()+this.getHeight()/2);
+	}
 
 }

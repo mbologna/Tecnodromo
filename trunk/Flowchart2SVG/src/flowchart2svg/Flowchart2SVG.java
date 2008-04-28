@@ -16,6 +16,7 @@ import org.w3c.dom.Document;
 
 
 public class Flowchart2SVG {
+
 	public static void generateSVG(List nodes, String outputFileWithoutExtension) throws UnsupportedEncodingException, FileNotFoundException, SVGGraphics2DIOException {
 		DOMImplementation domImpl = GenericDOMImplementation
 				.getDOMImplementation();
