@@ -1,21 +1,19 @@
 package blocks;
 
 import java.awt.Color;
-import java.awt.Shape;
+import java.awt.Graphics2D;
 
 public abstract class GeneralBlock {
 
 	private int x, y, width, height;
 	private Color blockColor;
 	private String instruction;
-	private Shape shape;
 
-	public GeneralBlock(int x, int y, int width, int height, Color blockColor, String instruction) {
+	public GeneralBlock(int x, int y, int width, int height, String instruction) {
 		this.x = x;
 		this.y = y;
 		this.width = width;
 		this.height = height;
-		this.blockColor = blockColor;
 		this.instruction = instruction;
 	}
 
@@ -39,9 +37,14 @@ public abstract class GeneralBlock {
 		return blockColor;
 	}
 
-	public String getText() {
+	public String getInstruction() {
 		return instruction;
 	}
+
+	public void setBlockColor(Color blockColor) {
+		this.blockColor = blockColor;
+	}
 	
+	public abstract void paint(Graphics2D g2d);
 
 }
