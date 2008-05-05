@@ -17,14 +17,15 @@ import org.w3c.dom.Document;
 
 public class Flowchart2SVG {
 
-	public static void generateSVG(List nodes, String outputFileWithoutExtension) throws UnsupportedEncodingException, FileNotFoundException, SVGGraphics2DIOException {
+	public static void generateSVG(List nodes, List links, String outputFileWithoutExtension) throws UnsupportedEncodingException, FileNotFoundException, SVGGraphics2DIOException {
 		DOMImplementation domImpl = GenericDOMImplementation
 				.getDOMImplementation();
 		String svgNS = "http://www.w3.org/2000/svg";
 		Document document = domImpl.createDocument(svgNS, "svg", null);
 		SVGGraphics2D svgGenerator = new SVGGraphics2D(document);
-		Painter p = new Painter(nodes);
-		p.paint(svgGenerator);
+		Painter p = new Painter(nodes,links);
+		p.paintNodes(svgGenerator);
+		p.paintLinks(svgGenerator);
 		boolean useCSS = false;
 		Writer out = new OutputStreamWriter(new FileOutputStream(new File(
 				outputFileWithoutExtension + ".svg")), "UTF-8");
