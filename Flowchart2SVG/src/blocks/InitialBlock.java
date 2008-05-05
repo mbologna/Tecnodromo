@@ -8,7 +8,7 @@ public class InitialBlock extends GeneralBlock{
 	private static final Color initialBlockColor = Color.GREEN;
 	
 	public InitialBlock(int x, int y, int w, int h, String text) {
-		super(x,y,w,h, text);
+		super(x,y,w,h,text);
 		super.setBlockColor(initialBlockColor);
 	}
 	
