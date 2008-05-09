@@ -2,6 +2,7 @@ package shapes;
 
 import java.awt.Polygon;
 
+@SuppressWarnings("serial")
 public class Parallelogram extends Polygon {
 	private int x, y, base, height, offset;
 	

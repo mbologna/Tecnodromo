@@ -3,7 +3,6 @@ package blocks;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
-import shapes.Parallelogram;
 import shapes.Rhombus;
 
 public class ControlBlock extends GeneralBlock{
