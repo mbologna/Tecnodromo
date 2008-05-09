@@ -4,6 +4,7 @@ import it.unibg.cs.flowchart2svg.shapes.Rhombus;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Point;
 
 
 public class ControlBlock extends GeneralBlock{
@@ -21,4 +22,11 @@ public class ControlBlock extends GeneralBlock{
 		super.paint(g2d);
 	}	
 	
+	public Point getLeftBorder() {
+		return new Point(this.getX()-this.getWidth()/2,this.getY()+this.getHeight()/2);
+	}
+	
+	public Point getRightBorder() {
+		return new Point(this.getX()+this.getWidth()/2,this.getY()+this.getHeight()/2);
+	}
 }

@@ -2,6 +2,7 @@ package it.unibg.cs.flowchart2svg.blocks;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Point;
 
 public abstract class GeneralBlock {
 
@@ -31,6 +32,22 @@ public abstract class GeneralBlock {
 
 	public int getHeight() {
 		return height;
+	}
+	
+	public Point getUpperBorder() {
+		return new Point(x+width/2,y);
+	}
+	
+	public Point getBottomBorder() {
+		return new Point(x+width/2,y+height);
+	}
+	
+	public Point getLeftBorder() {
+		return new Point(x,y+height/2);
+	}
+	
+	public Point getRightBorder() {
+		return new Point(x+width,y+height/2);
 	}
 
 	public Color getBlockColor() {

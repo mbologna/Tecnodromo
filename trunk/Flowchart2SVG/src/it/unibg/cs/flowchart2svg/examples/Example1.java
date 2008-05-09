@@ -25,19 +25,19 @@ public class Example1 {
 		List links = new LinkedList<Line>();
 		InitialBlock i1 = new InitialBlock(20,10,400,100,"void main()");
 		blocks.add(i1);
-		ActionBlock a1 = new ActionBlock(20,120,400,100,"int a;");
+		ActionBlock a1 = new ActionBlock(20,200,400,100,"int a;");
 		blocks.add(a1);
-		IOBlock io2 = new IOBlock(20,100,400,100,"printfsss()");
+		IOBlock io2 = new IOBlock(20,350,400,100,"printf(\"test a b c\");");
 		blocks.add(io2);
-		FinalBlock f1 = new FinalBlock(20,240,200,100,"end");
+		FinalBlock f1 = new FinalBlock(20,550,200,100,"end");
 		blocks.add(f1);
-		blocks.clear();
 		Line l1 = new Line(i1.getX()+i1.getWidth()/2,i1.getY()+i1.getHeight(),a1.getX()+a1.getWidth()/2,a1.getY());
 		Line l2 = new Line(a1,f1);
 		Arrow arrow2 = new Arrow(80,20,100,220);
-		links.add(l1);
-		links.add(l2);
-		links.add(arrow2);
+		Arrow arrow3 = new Arrow(i1.getBottomBorder(),a1.getUpperBorder());
+		links.add(arrow3);
+		links.add(new Arrow(a1.getBottomBorder(),io2.getUpperBorder()));
+		links.add(new Arrow(io2.getLeftBorder(),f1.getUpperBorder()));
 		Flowchart2SVG.generateSVG(blocks,links,"test");
 	}
 

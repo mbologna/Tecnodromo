@@ -23,6 +23,7 @@ public class Line {
 		this.x2 = gb2.getX()+gb2.getWidth()/2;
 		this.y2 = gb2.getY();
 	}
+
 	public void paint(Graphics2D g2d) {
 		g2d.drawLine(x1, y1, x2, y2);
 	}
