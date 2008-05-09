@@ -14,8 +14,11 @@
       ><polygon fill="blue" points=" 20 350 420 350 380 450 -20 450" stroke="none"
       /><text fill="black" x="153" xml:space="preserve" y="400" stroke="none"
       >printf("test a b c");</text
-      ><rect x="20" y="550" fill="red" width="200" rx="15" ry="15" height="100" stroke="none"
-      /><text fill="black" x="86" xml:space="preserve" y="600" stroke="none"
+      ><polygon fill="rgb(255,200,0)" points=" 220 500 20 550 220 600 420 550" stroke="none"
+      /><text fill="black" x="153" xml:space="preserve" y="550" stroke="none"
+      >if (a&lt;b)</text
+      ><rect x="90" y="650" fill="red" width="200" rx="15" ry="15" height="100" stroke="none"
+      /><text fill="black" x="156" xml:space="preserve" y="700" stroke="none"
       >end</text
       ><line y2="200" fill="none" x1="220" x2="220" stroke="black" y1="110"
       /><line y2="193" fill="none" x1="220" x2="213" stroke="black" y1="200"
@@ -23,9 +26,15 @@
       /><line y2="350" fill="none" x1="220" x2="220" stroke="black" y1="300"
       /><line y2="343" fill="none" x1="220" x2="213" stroke="black" y1="350"
       /><line y2="343" fill="none" x1="220" x2="227" stroke="black" y1="350"
-      /><line y2="550" fill="none" x1="0" x2="120" stroke="black" y1="400"
-      /><line y2="549" fill="none" x1="120" x2="110" stroke="black" y1="550"
-      /><line y2="540" fill="none" x1="120" x2="121" stroke="black" y1="550"
+      /><line y2="500" fill="none" x1="220" x2="220" stroke="black" y1="450"
+      /><line y2="493" fill="none" x1="220" x2="213" stroke="black" y1="500"
+      /><line y2="493" fill="none" x1="220" x2="227" stroke="black" y1="500"
+      /><line y2="650" fill="none" x1="20" x2="190" stroke="black" y1="550"
+      /><line y2="653" fill="none" x1="190" x2="180" stroke="black" y1="650"
+      /><line y2="640" fill="none" x1="190" x2="187" stroke="black" y1="650"
+      /><line y2="250" fill="none" x1="420" x2="420" stroke="black" y1="550"
+      /><line y2="257" fill="none" x1="420" x2="427" stroke="black" y1="250"
+      /><line y2="257" fill="none" x1="420" x2="413" stroke="black" y1="250"
     /></g
   ></g
 ></svg
