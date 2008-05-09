@@ -14,6 +14,6 @@ public class Rhombus extends Polygon{
 		super.addPoint(x, y);
 		super.addPoint(x-diag1/2, y+diag2/2);
 		super.addPoint(x, y+diag2);
-		super.addPoint(x-diag1/2, y+diag2/2);
+		super.addPoint(x+diag1/2, y+diag2/2);
 	}
 }

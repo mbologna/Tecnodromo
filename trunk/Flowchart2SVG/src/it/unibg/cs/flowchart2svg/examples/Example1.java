@@ -2,6 +2,7 @@ package it.unibg.cs.flowchart2svg.examples;
 
 import it.unibg.cs.flowchart2svg.Flowchart2SVG;
 import it.unibg.cs.flowchart2svg.blocks.ActionBlock;
+import it.unibg.cs.flowchart2svg.blocks.ControlBlock;
 import it.unibg.cs.flowchart2svg.blocks.FinalBlock;
 import it.unibg.cs.flowchart2svg.blocks.GeneralBlock;
 import it.unibg.cs.flowchart2svg.blocks.IOBlock;
@@ -29,7 +30,9 @@ public class Example1 {
 		blocks.add(a1);
 		IOBlock io2 = new IOBlock(20,350,400,100,"printf(\"test a b c\");");
 		blocks.add(io2);
-		FinalBlock f1 = new FinalBlock(20,550,200,100,"end");
+		ControlBlock cb1 = new ControlBlock(20,500,400,100,"if (a<b)");
+		blocks.add(cb1);
+		FinalBlock f1 = new FinalBlock(90,650,200,100,"end");
 		blocks.add(f1);
 		Line l1 = new Line(i1.getX()+i1.getWidth()/2,i1.getY()+i1.getHeight(),a1.getX()+a1.getWidth()/2,a1.getY());
 		Line l2 = new Line(a1,f1);
@@ -37,7 +40,9 @@ public class Example1 {
 		Arrow arrow3 = new Arrow(i1.getBottomBorder(),a1.getUpperBorder());
 		links.add(arrow3);
 		links.add(new Arrow(a1.getBottomBorder(),io2.getUpperBorder()));
-		links.add(new Arrow(io2.getLeftBorder(),f1.getUpperBorder()));
+		links.add(new Arrow(io2.getBottomBorder(),cb1.getUpperBorder()));
+		links.add(new Arrow(cb1.getLeftBorder(),f1.getUpperBorder()));
+		links.add(new Arrow(cb1.getRightBorder(),a1.getRightBorder()));
 		Flowchart2SVG.generateSVG(blocks,links,"test");
 	}
 
