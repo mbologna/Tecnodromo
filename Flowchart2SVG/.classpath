@@ -2,12 +2,6 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/Users/Michele/Desktop/batik-1.7/batik.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Michele/Desktop/batik-1.7/batik-rasterizer.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Michele/Desktop/batik-1.7/batik-slideshow.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Michele/Desktop/batik-1.7/batik-squiggle.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Michele/Desktop/batik-1.7/batik-svgpp.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Michele/Desktop/batik-1.7/batik-ttf2svg.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Michele/Desktop/batik-1.7/lib/batik-anim.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Michele/Desktop/batik-1.7/lib/batik-awt-util.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Michele/Desktop/batik-1.7/lib/batik-bridge.jar"/>
@@ -32,5 +26,35 @@
 	<classpathentry kind="lib" path="C:/Users/Michele/Desktop/batik-1.7/lib/xerces_2_5_0.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Michele/Desktop/batik-1.7/lib/xml-apis.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Michele/Desktop/batik-1.7/lib/xml-apis-ext.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Michele/workspace/Flowchart2SVG/lib/batik.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Michele/workspace/Flowchart2SVG/lib/batik-anim.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Michele/workspace/Flowchart2SVG/lib/batik-awt-util.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Michele/workspace/Flowchart2SVG/lib/batik-bridge.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Michele/workspace/Flowchart2SVG/lib/batik-codec.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Michele/workspace/Flowchart2SVG/lib/batik-css.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Michele/workspace/Flowchart2SVG/lib/batik-dom.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Michele/workspace/Flowchart2SVG/lib/batik-ext.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Michele/workspace/Flowchart2SVG/lib/batik-extension.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Michele/workspace/Flowchart2SVG/lib/batik-gui-util.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Michele/workspace/Flowchart2SVG/lib/batik-gvt.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Michele/workspace/Flowchart2SVG/lib/batik-parser.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Michele/workspace/Flowchart2SVG/lib/batik-rasterizer.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Michele/workspace/Flowchart2SVG/lib/batik-script.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Michele/workspace/Flowchart2SVG/lib/batik-slideshow.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Michele/workspace/Flowchart2SVG/lib/batik-squiggle.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Michele/workspace/Flowchart2SVG/lib/batik-svg-dom.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Michele/workspace/Flowchart2SVG/lib/batik-svggen.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Michele/workspace/Flowchart2SVG/lib/batik-svgpp.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Michele/workspace/Flowchart2SVG/lib/batik-swing.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Michele/workspace/Flowchart2SVG/lib/batik-transcoder.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Michele/workspace/Flowchart2SVG/lib/batik-ttf2svg.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Michele/workspace/Flowchart2SVG/lib/batik-util.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Michele/workspace/Flowchart2SVG/lib/batik-xml.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Michele/workspace/Flowchart2SVG/lib/js.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Michele/workspace/Flowchart2SVG/lib/pdf-transcoder.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Michele/workspace/Flowchart2SVG/lib/xalan-2.6.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Michele/workspace/Flowchart2SVG/lib/xerces_2_5_0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Michele/workspace/Flowchart2SVG/lib/xml-apis.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Michele/workspace/Flowchart2SVG/lib/xml-apis-ext.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

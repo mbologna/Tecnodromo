@@ -25,7 +25,7 @@ public class Example1 {
 		//blocks.add(i1);
 		ActionBlock a1 = new ActionBlock(20,120,400,100,"int a;");
 		//blocks.add(a1);
-		IOBlock io2 = new IOBlock(20,100,400,100,"printf()");
+		IOBlock io2 = new IOBlock(20,100,400,100,"printfsss()");
 		blocks.add(io2);
 		FinalBlock f1 = new FinalBlock(20,240,200,100,"end");
 		//blocks.add(f1);
