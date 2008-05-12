@@ -7,6 +7,7 @@ import it.unibg.cs.flowchart2svg.blocks.FinalBlock;
 import it.unibg.cs.flowchart2svg.blocks.GeneralBlock;
 import it.unibg.cs.flowchart2svg.blocks.IOBlock;
 import it.unibg.cs.flowchart2svg.blocks.InitialBlock;
+import it.unibg.cs.flowchart2svg.labels.Label;
 import it.unibg.cs.flowchart2svg.links.Arrow;
 import it.unibg.cs.flowchart2svg.links.Line;
 
@@ -23,15 +24,16 @@ public class Example1 {
 	public static void main(String args[]) throws UnsupportedEncodingException, FileNotFoundException, SVGGraphics2DIOException {
 		List blocks = new LinkedList<GeneralBlock>();
 		List links = new LinkedList<Line>();
-		InitialBlock i1 = new InitialBlock(20,10,400,100,"void main()");
+		List labels = new LinkedList<Label>();
+		InitialBlock i1 = new InitialBlock(220,10,400,100,"void main()");
 		blocks.add(i1);
-		ActionBlock a1 = new ActionBlock(20,200,400,100,"int a;");
+		ActionBlock a1 = new ActionBlock(220,200,400,100,"int a;");
 		blocks.add(a1);
-		IOBlock io2 = new IOBlock(20,350,400,100,"printf(\"test a b c\");");
+		IOBlock io2 = new IOBlock(220,350,400,100,"printf(\"test a b c\");");
 		blocks.add(io2);
-		ControlBlock cb1 = new ControlBlock(20,500,400,100,"if (a<b)");
+		ControlBlock cb1 = new ControlBlock(220,500,400,100,"if (a<b)");
 		blocks.add(cb1);
-		FinalBlock f1 = new FinalBlock(90,650,200,100,"end");
+		FinalBlock f1 = new FinalBlock(290,650,200,100,"end");
 		blocks.add(f1);
 		Line l1 = new Line(i1.getX()+i1.getWidth()/2,i1.getY()+i1.getHeight(),a1.getX()+a1.getWidth()/2,a1.getY());
 		Line l2 = new Line(a1,f1);
@@ -42,7 +44,11 @@ public class Example1 {
 		links.add(new Arrow(io2.getBottomBorder(),cb1.getUpperBorder()));
 		links.add(new Arrow(cb1.getLeftBorder(),f1.getUpperBorder()));
 		links.add(new Arrow(cb1.getRightBorder(),a1.getRightBorder()));
-		Flowchart2SVG.generateSVG(blocks,links,"test");
+		Label true1 = new Label(cb1.getRightBorder().x+20,cb1.getRightBorder().y-20, "TRUE");
+		Label false1 = new Label(cb1.getLeftBorder().x-20,cb1.getRightBorder().y-20, "FALSE");
+		labels.add(true1);
+		labels.add(false1);
+		Flowchart2SVG.generateSVG(blocks,links,labels,"test");
 	}
 
 }
