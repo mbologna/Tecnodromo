@@ -2,7 +2,9 @@ package it.unibg.cs.flowchart2svg.shapes;
 
 import java.awt.Polygon;
 
+@SuppressWarnings("serial")
 public class Rhombus extends Polygon{
+	@SuppressWarnings("unused")
 	private int x,y,diag1,diag2;
 	public Rhombus(int x, int y, int diag1, int diag2) {
 		super();
