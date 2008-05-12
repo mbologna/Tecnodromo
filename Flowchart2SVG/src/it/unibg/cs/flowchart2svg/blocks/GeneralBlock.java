@@ -1,5 +1,6 @@
 package it.unibg.cs.flowchart2svg.blocks;
 
+
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
