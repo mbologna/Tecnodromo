@@ -7,8 +7,7 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 
 
-public class IOBlock extends GeneralBlock{
-	
+public class IOBlock extends GeneralBlock{	
 	private static final Color IOBlockColor = Color.BLUE;
 	
 	public IOBlock(int x, int y, int w, int h, String text) {

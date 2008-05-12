@@ -2,7 +2,6 @@ package it.unibg.cs.flowchart2svg.links;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.HeadlessException;
 import java.awt.Point;
 
 public class Arrow extends Line {
