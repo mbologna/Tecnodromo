@@ -1,5 +1,9 @@
 package it.unibg.cs.flowchart2svg;
 
+import it.unibg.cs.flowchart2svg.blocks.GeneralBlock;
+import it.unibg.cs.flowchart2svg.labels.Label;
+import it.unibg.cs.flowchart2svg.links.Line;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -17,7 +21,7 @@ import org.w3c.dom.Document;
 
 public class Flowchart2SVG {
 
-	public static void generateSVG(List nodes, List links, List labels, String outputFileWithoutExtension) throws UnsupportedEncodingException, FileNotFoundException, SVGGraphics2DIOException {
+	public static void generateSVG(List<GeneralBlock> nodes, List<Line> links, List<Label> labels, String outputFileWithoutExtension) throws UnsupportedEncodingException, FileNotFoundException, SVGGraphics2DIOException {
 		DOMImplementation domImpl = GenericDOMImplementation
 				.getDOMImplementation();
 		String svgNS = "http://www.w3.org/2000/svg";

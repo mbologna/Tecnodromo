@@ -10,29 +10,31 @@ import java.util.List;
 
 
 public class Painter {
-	private List nodesList,linksList, labelsList;
+	private List<GeneralBlock> nodesList;
+	private List<Line> linksList;
+	private List<Label> labelsList;
 	
-	public Painter(List nodes,List links, List labels) {
+	public Painter(List<GeneralBlock> nodes,List<Line> links, List<Label> labels) {
 		nodesList = nodes;
 		linksList = links;
 		labelsList = labels;
 	}
 	
 	public void paintNodes(Graphics2D g2d) {
-		for (Iterator iterator = nodesList.iterator(); iterator.hasNext();) {
+		for (Iterator<GeneralBlock> iterator = nodesList.iterator(); iterator.hasNext();) {
 			GeneralBlock elem = (GeneralBlock) iterator.next();
 			elem.paint(g2d);
 		}
 	}
 	
 	public void paintLinks(Graphics2D g2d) {
-		for (Iterator iterator = linksList.iterator(); iterator.hasNext();) {
+		for (Iterator<Line> iterator = linksList.iterator(); iterator.hasNext();) {
 			Line elem = (Line) iterator.next();
 			elem.paint(g2d);
 		}
 	}
 	public void paintLabels(Graphics2D g2d) {
-		for (Iterator iterator = labelsList.iterator(); iterator.hasNext();) {
+		for (Iterator<Label> iterator = labelsList.iterator(); iterator.hasNext();) {
 			Label elem = (Label) iterator.next();
 			elem.paint(g2d);
 		}

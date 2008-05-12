@@ -4,6 +4,7 @@ import java.awt.Polygon;
 
 @SuppressWarnings("serial")
 public class Parallelogram extends Polygon {
+	@SuppressWarnings("unused")
 	private int x, y, base, height, offset;
 	
 	public Parallelogram(int x, int y, int base, int offset, int height) {
