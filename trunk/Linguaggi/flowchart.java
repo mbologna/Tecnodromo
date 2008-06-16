@@ -138,7 +138,7 @@ public class flowchart {
 					{
 						//setto la posizione x del figlio come la x del padre + metà della lunghezza destra del padre
 						group.get(z).getDimension().setx(group.get(j).getDimension().getX()-(group.get(j).getDimension().getdL()/2));
-					}
+										}
 					if(group.get(z).getPosition().equals("center"))
 					{
 						//setto la posizione x del figlio come la x del padre + metà della lunghezza destra del padre
@@ -148,17 +148,20 @@ public class flowchart {
 			}
 		}
 
+		/*
+		 * mancano i collegamenti tra i figli dello stesso padre
+		 * e i collegamenti con e da il blocco iniziale
+		 * mancano i collegamenti finali a un blocco
+		 */
+
 		//disegno i link
-		int l_x1 , l_y1, l_x2,l_y2;
-		for(int j=1;j<group.size();j++)
+
+		int l_x1 , l_y1, l_x2,l_y2,r_x1 , r_y1, r_x2,r_y2;
+		/*for(int j=1;j<group.size();j++)
 		{
 			for(int z=j+1;z<group.size();z++)
 			{
-				/*
-				 * mancano i collegamenti tra i figli dello stesso padre
-				 * e i collegamenti con e da il blocco iniziale
-				 * mancano i collegamenti finali a un blocco
-				 */
+
 
 				if(group.get(z).getFather().equals(group.get(j).getName())) //collego padri con figli
 				{
@@ -170,7 +173,8 @@ public class flowchart {
 					links.add(new Arrow(l_x1,l_y1,l_x2,l_y2));
 				}
 			}
-		}
+		}*/
+
 		//---stampa dimensioni -------
 		for(int i=0;i<group.size();i++)
 		{
@@ -210,11 +214,30 @@ public class flowchart {
 				a1.setBlockColor(Color.GRAY);
 			blocks.add(a1);
 
-			//prova blocco if
+			//prova collegamenti blocco if
 			if(group.get(i).getGroupType().equals("if")){
-				a1 = new ControlBlock(b_x-blockWidth/2,b_y,blockWidth,blockHeight,((Istruction)(group.get(i).getIstr().get(0))).getText());
+				int x1 , y1, x2,y2;
+				a1 = new ControlBlock(b_x-blockWidth/2,b_y+blockDistance,blockWidth,blockHeight,((Istruction)(group.get(i).getIstr().get(0))).getText());
 				blocks.add(a1);
+				x1=x2=b_x;
+				y1=b_y;
+				y2=b_y+blockDistance;
+				links.add(new Line(x1,y1,x2,y2));
+				x1=b_x-blockWidth/2;
+				y1=b_y+blockHeight/2+blockDistance;
+				x2=x1-(int)(group.get(i+1).getDimension().getdL());
+				y2=y1+blockHeight/2;
+				links.add(new Line(x1,y1,x2,y1));
+				links.add(new Line(x2,y1,x2,y2));
+				x1=b_x+blockWidth/2;
+				y1=b_y+blockHeight/2+blockDistance;
+				x2=x1+(int)(group.get(i+1).getDimension().getdR());
+				y2=y1+blockHeight/2;
+				links.add(new Line(x1,y1,x2,y1));
+				links.add(new Line(x2,y1,x2,y2));
+				//mancano collegamenti dai figli alla fine del blocco
 			}
+
 
 
 		}
@@ -265,7 +288,7 @@ public class flowchart {
 				}
 
 
-				y=y+blockDistance+ifSpace+fatherTemp.getDimension().getY();  // +blockheight/2
+				y=y+blockDistance+ifSpace+fatherTemp.getDimension().getY()+blockHeight/2;
 				if(groups.getPosition().equals("right"))
 					x=(blockWidth/2+groups.getDimension().getdL())+fatherTemp.getDimension().getX();
 				if(groups.getPosition().equals("left"))
