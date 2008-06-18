@@ -350,7 +350,7 @@ public class flowchart {
 				y2=y1+blockHeight/2;
 				links.add(new Line(x1,y1,x2,y1));
 				links.add(new Line(x2,y1,x2,y2));
-				
+
 				y1=bottom_y(group.get(i),"left")+y2;
 				y2=b_y+b_h;
 				links.add(new Line(x2,y1,x2,y2));
@@ -361,7 +361,7 @@ public class flowchart {
 				y2=y1+blockHeight/2;
 				links.add(new Line(x1,y1,x2,y1));
 				links.add(new Line(x2,y1,x2,y2));
-				
+
 				y1=bottom_y(group.get(i),"right")+y2;
 				y2=b_y+b_h;
 				links.add(new Line(x2,y1,x2,y2));
@@ -375,13 +375,58 @@ public class flowchart {
 				a1 = new ControlBlock(b_x-blockWidth/2,b_y+blockDistance,blockWidth,blockHeight,group.get(i).getHeader());
 				blocks.add(a1);
 			}
-			
+
 			if(group.get(i).getGroupType().equals("dowhile"))
 			{
 				int x1 , y1, x2,y2;
 				a1 = new ControlBlock(b_x-blockWidth/2,b_y+b_h-blockHeight,blockWidth,blockHeight,group.get(i).getHeader());
 				blocks.add(a1);
+				y1=b_y+b_h-blockHeight/2;
+				x1=b_x-blockWidth/2;
+				x2=b_x-b_w_l;
+				links.add(new Line(x1,y1,x2,y1));
+				y2=b_y;
+				links.add(new Line(x2,y1,x2,y2));
+				x1=x2+blockWidth;
+				links.add(new Line(x2,y2,x1,y2));
+				y1=y2+blockDistance;
+				links.add(new Line(x1,y2,x1,y1));
+
 			}
+
+			//collegamenti tra i blocchi
+			int x1=0 , y1=0, x2,y2=0;
+			for(int j=0;j<group.get(i).getIstr().size();j++)
+				{
+					if(((Istruction)(group.get(i).getIstr().get(j))).getMyGroup()==null)  
+					{
+						
+						if(j==0)
+							{
+							x1=b_x;
+							y1=b_y;
+							}
+						else
+							y1=y2+blockHeight;
+						
+						y2=y1+blockDistance;
+						links.add(new Line(x1,y1,x1,y2));
+						
+					}
+					else
+					{
+						if(j==0)
+						{
+						x1=b_x;
+						y1=b_y;
+						}
+					else
+						y1=(int) (y2+(stringToGroup(((Istruction)(group.get(i).getIstr().get(j))).getMyGroup())).getDimension().getdH());
+						
+						y2=y1+blockDistance;
+						links.add(new Line(x1,y1,x1,y2));
+					}
+				}
 
 		}
 
@@ -394,15 +439,15 @@ public class flowchart {
 		for(int z=0;z<group.size();z++)
 		{
 			if(group.get(z).getFather()!=null)	
-			if(group.get(z).getFather().equals(father.getName())) //cerco i figli
-			{
-				if(group.get(z).getPosition().equals(side))
-				return (int) (group.get(z).getDimension().getdH());
-			}
+				if(group.get(z).getFather().equals(father.getName())) //cerco i figli
+				{
+					if(group.get(z).getPosition().equals(side))
+						return (int) (group.get(z).getDimension().getdH());
+				}
 		}
 		return 0;
 	}
-	
+
 	public void replaceGroup_y(Group gruppo)
 	{
 		int actual_y=(int)gruppo.getDimension().getY()+blockDistance;
