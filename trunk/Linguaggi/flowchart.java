@@ -122,6 +122,7 @@ public class flowchart {
 		group.add(group_insert);
 		group.get(2).setIstr(new Istruction("whuileprova","gsfd","ciao"));
 		group.get(2).setIstr(new Istruction("whuileprova","gsfd","ciao"));
+		group.get(2).setIstr(new Istruction("whuileprova","gsfd","ciao"));
 
 		group_insert=new Group("g4", true, "right", "while(io=io)", "init", "g2");
 		group.add(group_insert);
@@ -130,7 +131,7 @@ public class flowchart {
 		group.get(3).setIstr(new Istruction("mao","gsfd","ciao"));
 
 
-		group_insert=new Group("g5", true, "center", "if(io=io)", "while", "g4");
+		group_insert=new Group("g5", true, "center", "if(io=io)", "dowhile", "g4");
 		group.add(group_insert);
 
 
@@ -336,7 +337,7 @@ public class flowchart {
 
 			if(group.get(i).getGroupType().equals("if"))
 			{
-				int x1 , y1, x2,y2;
+				int x1 , y1, x2,y2,x_temp;
 				a1 = new ControlBlock(b_x-blockWidth/2,b_y+blockDistance,blockWidth,blockHeight,group.get(i).getHeader());
 				blocks.add(a1);
 				x1=x2=b_x;
@@ -349,12 +350,22 @@ public class flowchart {
 				y2=y1+blockHeight/2;
 				links.add(new Line(x1,y1,x2,y1));
 				links.add(new Line(x2,y1,x2,y2));
+				
+				y1=bottom_y(group.get(i),"left")+y2;
+				y2=b_y+b_h;
+				links.add(new Line(x2,y1,x2,y2));
+				x_temp=x2;			
 				x1=b_x+blockWidth/2;
 				y1=b_y+blockHeight/2+blockDistance;
 				x2=x1+(int)((group.get(i).getDimension().getdR())/2)-blockWidth/2;
 				y2=y1+blockHeight/2;
 				links.add(new Line(x1,y1,x2,y1));
 				links.add(new Line(x2,y1,x2,y2));
+				
+				y1=bottom_y(group.get(i),"right")+y2;
+				y2=b_y+b_h;
+				links.add(new Line(x2,y1,x2,y2));
+				links.add(new Line(x_temp,y2,x2,y2));
 				//mancano collegamenti dai figli alla fine del blocco
 			}
 
@@ -364,7 +375,13 @@ public class flowchart {
 				a1 = new ControlBlock(b_x-blockWidth/2,b_y+blockDistance,blockWidth,blockHeight,group.get(i).getHeader());
 				blocks.add(a1);
 			}
-
+			
+			if(group.get(i).getGroupType().equals("dowhile"))
+			{
+				int x1 , y1, x2,y2;
+				a1 = new ControlBlock(b_x-blockWidth/2,b_y+b_h-blockHeight,blockWidth,blockHeight,group.get(i).getHeader());
+				blocks.add(a1);
+			}
 
 		}
 
@@ -372,6 +389,20 @@ public class flowchart {
 	}
 
 
+	public int bottom_y(Group father,String side)
+	{
+		for(int z=0;z<group.size();z++)
+		{
+			if(group.get(z).getFather()!=null)	
+			if(group.get(z).getFather().equals(father.getName())) //cerco i figli
+			{
+				if(group.get(z).getPosition().equals(side))
+				return (int) (group.get(z).getDimension().getdH());
+			}
+		}
+		return 0;
+	}
+	
 	public void replaceGroup_y(Group gruppo)
 	{
 		int actual_y=(int)gruppo.getDimension().getY()+blockDistance;
@@ -401,9 +432,15 @@ public class flowchart {
 					}
 				}
 
-				/*
-				 * manca il do while xkè è diverso
-				 */
+				if(stringToGroup(((Istruction)(gruppo.getIstr().get(j))).getMyGroup()).getGroupType().equals("dowhile"))
+				{
+					//cerco il figlio e lo aggiorno
+					for(int z=j+1;z<group.size();z++)
+					{
+						if(group.get(z).getFather().equals(stringToGroup(((Istruction)(gruppo.getIstr().get(j))).getMyGroup()).getName())) //cerco i figli
+							group.get(z).getDimension().sety(actual_y+blockDistance);
+					}
+				}
 
 				actual_y+=(stringToGroup(((Istruction)(gruppo.getIstr().get(j))).getMyGroup())).getDimension().getdH()+blockDistance;
 			}
@@ -451,11 +488,11 @@ public class flowchart {
 							actual_height=(int) (group.get(z).getDimension().getdH()+blockDistance);
 					}
 					else
-						actual_height+=group.get(z).getDimension().getdH()+blockDistance;
+						actual_height+=group.get(z).getDimension().getdH();
 				}
 			}
 		}
-		return actual_height;
+		return (actual_height+blockDistance);
 	}
 
 
@@ -594,7 +631,7 @@ public class flowchart {
 			System.out.println("--> nuova Left"+fatherTemp.getDimension().getdL());
 
 			if(fatherTemp.getGroupType().equals("init"))
-				fatherTemp.getDimension().setdH(dimensioneBlocchi(fatherTemp)+dimensioneGruppi(fatherTemp));
+				fatherTemp.getDimension().setdH(dimensioneBlocchi(fatherTemp)+dimensioneGruppi(fatherTemp)+blockDistance);
 			else
 				fatherTemp.getDimension().setdH(dimensioneBlocchi(fatherTemp)+dimensioneGruppi(fatherTemp)+blockHeight);
 
@@ -612,7 +649,7 @@ public class flowchart {
 
 			//			setta le altezze
 			if(fatherTemp.getGroupType().equals("init"))
-				fatherTemp.getDimension().setdH(dimensioneBlocchi(fatherTemp)+dimensioneGruppi(fatherTemp));
+				fatherTemp.getDimension().setdH(dimensioneBlocchi(fatherTemp)+dimensioneGruppi(fatherTemp)+blockDistance);
 			else
 				fatherTemp.getDimension().setdH(dimensioneBlocchi(fatherTemp)+dimensioneGruppi(fatherTemp)+blockHeight);
 
@@ -622,7 +659,7 @@ public class flowchart {
 		{
 
 			if(fatherTemp.getGroupType().equals("init"))
-				fatherTemp.getDimension().setdH(dimensioneBlocchi(fatherTemp)+dimensioneGruppi(fatherTemp));
+				fatherTemp.getDimension().setdH(dimensioneBlocchi(fatherTemp)+dimensioneGruppi(fatherTemp)+blockDistance);
 			else
 				fatherTemp.getDimension().setdH(dimensioneBlocchi(fatherTemp)+dimensioneGruppi(fatherTemp)+blockHeight);
 
