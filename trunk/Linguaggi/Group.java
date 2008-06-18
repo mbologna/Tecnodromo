@@ -4,7 +4,7 @@ public class Group{
 
 private String name;
 private String position;
-private String header;
+private String header; //testo rombo
 private boolean openP;
 private boolean isFinish;
 private Dimension dim;
