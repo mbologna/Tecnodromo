@@ -1,7 +1,9 @@
 import it.unibg.cs.flowchart2svg.Flowchart2SVG;
 import it.unibg.cs.flowchart2svg.blocks.ActionBlock;
 import it.unibg.cs.flowchart2svg.blocks.ControlBlock;
+import it.unibg.cs.flowchart2svg.blocks.FinalBlock;
 import it.unibg.cs.flowchart2svg.blocks.GeneralBlock;
+import it.unibg.cs.flowchart2svg.blocks.InitialBlock;
 import it.unibg.cs.flowchart2svg.labels.Label;
 import it.unibg.cs.flowchart2svg.links.Arrow;
 import it.unibg.cs.flowchart2svg.links.Line;
@@ -41,7 +43,7 @@ public class flowchart {
 	double x,y;
 	static public Group fatherTemp;
 
-	int b_x,b_y,b_w,b_h,b_w_l;
+	int b_x,b_y,b_w,b_h,b_w_l,shiftX,shiftY;
 	String b_nome;
 	/*
 	 * Parte grafica...
@@ -131,7 +133,7 @@ public class flowchart {
 		group.get(3).setIstr(new Istruction("mao","gsfd","ciao"));
 
 
-		group_insert=new Group("g5", true, "center", "if(io=io)", "dowhile", "g4");
+		group_insert=new Group("g5", true, "center", "if(io=io)", "while", "g4");
 		group.add(group_insert);
 
 
@@ -145,11 +147,11 @@ public class flowchart {
 		group.get(6).setIstr(new Istruction("mao","gsfd","ciao"));
 		group.get(6).setIstr(new Istruction("mao","gsfd","ciao"));*/
 
-
+		GeneralBlock a1;
 		//************* blocco riferimento assi *******************
-		GeneralBlock a1 = new ActionBlock(300,30,30,30,"OR"); // 300= 300 + 0 X  ;  100 Y
+		/*GeneralBlock a1 = new ActionBlock(300,30,30,30,"OR"); // 300= 300 + 0 X  ;  100 Y
 		a1.setBlockColor(Color.BLUE);
-		blocks.add(a1);
+		blocks.add(a1);*/
 
 		//*********************************************************
 
@@ -232,13 +234,15 @@ public class flowchart {
 		}
 
 		int l_x1 , l_y1, l_x2,l_y2,r_x1 , r_y1, r_x2,r_y2;
-
+        //	setto lo shift per le x e y
+		shiftY=100;
+		shiftX=(int) (group.get(0).getDimension().getdL()+20);
 
 		for(int i=0;i<group.size();i++)
 		{
 
-			b_x=(int) group.get(i).getDimension().getX()+300;
-			b_y=(int) group.get(i).getDimension().getY()+ 100;
+			b_x=(int) group.get(i).getDimension().getX()+shiftX;
+			b_y=(int) group.get(i).getDimension().getY()+ shiftY;
 			b_h=(int) group.get(i).getDimension().getdH();
 			b_w_l =(int) (group.get(i).getDimension().getdL());
 			b_w=(int) (group.get(i).getDimension().getdL()+group.get(i).getDimension().getdR());
@@ -267,7 +271,7 @@ public class flowchart {
 
 		}
 
-
+		
 
 		//---stampa dimensioni -------
 		for(int i=0;i<group.size();i++)
@@ -280,8 +284,8 @@ public class flowchart {
 			System.out.println("Y :"+ group.get(i).getDimension().getY());
 
 
-			b_x=(int) group.get(i).getDimension().getX()+300;
-			b_y=(int) group.get(i).getDimension().getY()+ 100;
+			b_x=(int) group.get(i).getDimension().getX()+shiftX;
+			b_y=(int) group.get(i).getDimension().getY()+ shiftY;
 			b_h=(int) group.get(i).getDimension().getdH();
 			b_w_l =(int) (group.get(i).getDimension().getdL());
 			b_w=(int) (group.get(i).getDimension().getdL()+group.get(i).getDimension().getdR());
@@ -293,7 +297,7 @@ public class flowchart {
 			/*
 			 * Creo i blocchi. Specifico (x,y,w,h,testo)
 			 */
-			a1 = new ActionBlock(b_x-b_w_l,b_y,b_w,b_h,b_nome);
+			/*a1 = new ActionBlock(b_x-b_w_l,b_y,b_w,b_h,b_nome);
 			if(i==0)
 				a1.setBlockColor(Color.MAGENTA);
 			if(i==1)
@@ -308,7 +312,7 @@ public class flowchart {
 				a1.setBlockColor(Color.GRAY);
 			if(i==6)
 				a1.setBlockColor(Color.PINK);
-			blocks.add(a1);
+			blocks.add(a1);*/
 
 
 			//devo solo instanziare i blocchi perchè il gruppo dove sono contenuti l'ho instanziato appena sopra
@@ -369,11 +373,25 @@ public class flowchart {
 				//mancano collegamenti dai figli alla fine del blocco
 			}
 
-			if(group.get(i).getGroupType().equals("while"))
+
+
+			if(group.get(i).getGroupType().equals("for")||group.get(i).getGroupType().equals("while"))
 			{
 				int x1 , y1, x2,y2;
 				a1 = new ControlBlock(b_x-blockWidth/2,b_y+blockDistance,blockWidth,blockHeight,group.get(i).getHeader());
 				blocks.add(a1);
+				x1=b_x;
+				y1=b_y;
+				y2=y1+blockDistance;
+				links.add(new Line(x1,y1,x1,y2));
+				y2+=blockHeight/2;
+				x1+=blockWidth/2;
+				x2=(int) (b_x+group.get(i).getDimension().getdR());
+				links.add(new Line(x1,y2,x2,y2));
+				y1=(int) (b_y+group.get(i).getDimension().getdH());
+				links.add(new Line(x2,y2,x2,y1));
+				x1=b_x;
+				links.add(new Line(x2,y1,x1,y1));
 			}
 
 			if(group.get(i).getGroupType().equals("dowhile"))
@@ -383,11 +401,11 @@ public class flowchart {
 				blocks.add(a1);
 				y1=b_y+b_h-blockHeight/2;
 				x1=b_x-blockWidth/2;
-				x2=b_x-b_w_l;
+				x2=(int) (b_x-group.get(i).getDimension().getdL());
 				links.add(new Line(x1,y1,x2,y1));
 				y2=b_y;
 				links.add(new Line(x2,y1,x2,y2));
-				x1=x2+blockWidth;
+				x1=(int) (x2+group.get(i).getDimension().getdL());
 				links.add(new Line(x2,y2,x1,y2));
 				y1=y2+blockDistance;
 				links.add(new Line(x1,y2,x1,y1));
@@ -397,39 +415,52 @@ public class flowchart {
 			//collegamenti tra i blocchi
 			int x1=0 , y1=0, x2,y2=0;
 			for(int j=0;j<group.get(i).getIstr().size();j++)
+			{
+				if(((Istruction)(group.get(i).getIstr().get(j))).getMyGroup()==null)  
 				{
-					if(((Istruction)(group.get(i).getIstr().get(j))).getMyGroup()==null)  
+
+					if(j==0)
 					{
-						
-						if(j==0)
-							{
-							x1=b_x;
-							y1=b_y;
-							}
-						else
-							y1=y2+blockHeight;
-						
-						y2=y1+blockDistance;
-						links.add(new Line(x1,y1,x1,y2));
-						
-					}
-					else
-					{
-						if(j==0)
-						{
 						x1=b_x;
 						y1=b_y;
-						}
-					else
-						y1=(int) (y2+(stringToGroup(((Istruction)(group.get(i).getIstr().get(j))).getMyGroup())).getDimension().getdH());
-						
-						y2=y1+blockDistance;
-						links.add(new Line(x1,y1,x1,y2));
 					}
+					else
+						y1=y2+blockHeight;
+
+					y2=y1+blockDistance;
+					links.add(new Line(x1,y1,x1,y2));
+					y2+=blockHeight;
+					y1=y2+blockDistance;
+					links.add(new Line(x1,y2,x1,y1));
+					y2-=blockHeight;
+					y1=y1-blockDistance-blockHeight;
+
 				}
+				else
+				{
+					if(j==0)
+					{
+						x1=b_x;
+						y1=b_y;
+					}
+					else
+						//non disegno però va bene cosi
+						y1=(int) (y2+(stringToGroup(((Istruction)(group.get(i).getIstr().get(j))).getMyGroup())).getDimension().getdH());
+					y2=y1+blockDistance;
+
+				}
+			}
 
 		}
-
+		//inserisco gli ovali inizio e fine
+		
+		a1=new InitialBlock((int)(group.get(0).getDimension().getX()+shiftX-blockWidth/2),(int)(group.get(0).getDimension().getY()-blockHeight-blockDistance+shiftY),blockWidth,blockHeight,"Inizio");
+		blocks.add(a1);
+		links.add(new Line((int)(group.get(0).getDimension().getX()+shiftX),(int)(group.get(0).getDimension().getY()-blockDistance+shiftY),(int)(group.get(0).getDimension().getX()+shiftX),(int)(group.get(0).getDimension().getY()+shiftY)));
+		//blocco finale
+		a1=new FinalBlock((int)(group.get(0).getDimension().getX()+shiftX-blockWidth/2),(int)(group.get(0).getDimension().getY()+group.get(0).getDimension().getdH()+blockDistance+shiftY),blockWidth,blockHeight,"Fine");
+		blocks.add(a1);
+		links.add(new Line((int)(group.get(0).getDimension().getX()+shiftX),(int)(group.get(0).getDimension().getY()+group.get(0).getDimension().getdH()+shiftY),(int)(group.get(0).getDimension().getX()+shiftX),(int)(group.get(0).getDimension().getY()+group.get(0).getDimension().getdH()+blockDistance+shiftY)));
 		Flowchart2SVG.generateSVG(blocks,links,labels,"test");
 	}
 
