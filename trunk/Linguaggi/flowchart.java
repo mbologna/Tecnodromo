@@ -55,7 +55,7 @@ public class flowchart {
 		group.get(0).setIstr(new Istruction("last","1ciao","1ciao"));
 		group.get(0).setIstr(new Istruction("ifdiprova","rombo","ciao","g2"));
 		group.get(0).setIstr(new Istruction("last","mao","1ciao"));
-		
+
 		group.get(0).setIstr(new Istruction("last","1ciao","1ciao"));
 		group.get(0).setIstr(new Istruction("last","romboide","1ciao"));
 		group.get(0).setIstr(new Istruction("last","1ciao","1ciao"));
@@ -64,7 +64,7 @@ public class flowchart {
 		group_insert=new Group("g2", true, "center", "if(io=io)", "if", "g1");
 		group.add(group_insert);
 
- 
+
 		group_insert=new Group("g3", true, "left", "hj", "init", "g2");
 		group.add(group_insert);
 		group.get(2).setIstr(new Istruction("ifdi24","rombo","ciao","g4"));
@@ -74,7 +74,7 @@ public class flowchart {
 
 		group_insert=new Group("g4", true, "center", "while(io=io)", "if", "g3");
 		group.add(group_insert);
-		
+
 
 		group_insert=new Group("g5", true, "left", "while(io=io)", "init", "g4");
 		group.add(group_insert);
@@ -85,7 +85,7 @@ public class flowchart {
 		//group.get(5).setIstr(new Istruction("ifdg7","rombo","ciao","g7"));
 		group.get(5).setIstr(new Istruction("g6_1","gsfd","ciao"));
 		group.get(5).setIstr(new Istruction("g6_2","gsfd","ciao"));
-		
+
 		group_insert=new Group("g7", true, "right", "fd", "init", "g2");
 		group.add(group_insert);
 		//group.get(5).setIstr(new Istruction("ifdg7","rombo","ciao","g7"));
@@ -129,10 +129,10 @@ public class flowchart {
 				int k=group.get(i).getIstr().size();
 				int j=0;
 				if(k!=0)
-				{	
+				{
 					for(int h=0;h<k;h++)
 					{
-						if(((Istruction)(group.get(i).getIstr().get(h))).getMyGroup()==null) 
+						if(((Istruction)(group.get(i).getIstr().get(h))).getMyGroup()==null)
 							j++;
 					}
 				}
@@ -196,7 +196,7 @@ public class flowchart {
 			b_nome="gruppo "+(i+1);
 
 			/*
-			 * Implementazione grafica del contenuto dei gruppi 
+			 * Implementazione grafica del contenuto dei gruppi
 			 */
 
 		}
@@ -258,15 +258,15 @@ public class flowchart {
 				int k=group.get(i).getIstr().size();
 				int actual_y=b_y+blockDistance;
 				if(k!=0)
-				{	
+				{
 					for(int h=0;h<k;h++)
 					{
-						if(((Istruction)(group.get(i).getIstr().get(h))).getMyGroup()==null) 
+						if(((Istruction)(group.get(i).getIstr().get(h))).getMyGroup()==null)
 						{
 							if(((Istruction)(group.get(i).getIstr().get(h))).getShape().equals("romboide"))
 								a1 = new IOBlock(b_x-blockWidth/2,actual_y,blockWidth,blockHeight,((Istruction)(group.get(i).getIstr().get(h))).getText());
 							else
-								a1 = new ActionBlock(b_x-blockWidth/2,actual_y,blockWidth,blockHeight,((Istruction)(group.get(i).getIstr().get(h))).getText());	
+								a1 = new ActionBlock(b_x-blockWidth/2,actual_y,blockWidth,blockHeight,((Istruction)(group.get(i).getIstr().get(h))).getText());
 							blocks.add(a1);
 							//linea sopra blocco
 							links.add(new Line((b_x),actual_y,(b_x),actual_y-blockDistance));
@@ -301,7 +301,7 @@ public class flowchart {
 				y1=bottom_y(group.get(i),"left")+y2;
 				y2=b_y+b_h;
 				links.add(new Line(x2,y1,x2,y2));
-				x_temp=x2;			
+				x_temp=x2;
 				x1=b_x+blockWidth/2;
 				y1=b_y+blockHeight/2+blockDistance;
 				x2=x1+(int)((group.get(i).getDimension().getdR())/2)-blockWidth/2;
@@ -337,7 +337,7 @@ public class flowchart {
 
 			if(group.get(i).getGroupType().equals("dowhile"))
 			{
-				int x1 , y1, x2,y2;
+				int x1 , y1, x2, y2;
 				a1 = new ControlBlock(b_x-blockWidth/2,b_y+b_h-blockHeight,blockWidth,blockHeight,group.get(i).getHeader());
 				blocks.add(a1);
 				y1=b_y+b_h-blockHeight/2;
@@ -357,7 +357,7 @@ public class flowchart {
 			/*int x1=0 , y1=0, x2=0,y2=0;
 			for(int j=0;j<group.get(i).getIstr().size();j++)
 			{
-				if(((Istruction)(group.get(i).getIstr().get(j))).getMyGroup()==null)  
+				if(((Istruction)(group.get(i).getIstr().get(j))).getMyGroup()==null)
 				{
 
 					if(j==0)
@@ -393,13 +393,13 @@ public class flowchart {
 					links.add(new Line(x1,y1,x1,y2));
 
 				}
-			}*/ 
-			
-			//link sotto ogni gruppo in un gruppo init
-		    int x1=0 , y1=0, x2=0,y2=0;
+			}*/
+
+			//link sotto e sopra ogni gruppo in un gruppo init
+		    int x1,x2,y1,y2;
 			for(int j=0;j<group.get(i).getIstr().size();j++)
 			{
-				if(((Istruction)(group.get(i).getIstr().get(j))).getMyGroup()!=null)  
+				if(((Istruction)(group.get(i).getIstr().get(j))).getMyGroup()!=null)
 				{
 					System.out.println("------- "+(stringToGroup(((Istruction)(group.get(i).getIstr().get(j))).getMyGroup())).getName());
 					y1=(int) ((stringToGroup(((Istruction)(group.get(i).getIstr().get(j))).getMyGroup())).getDimension().getY()+(stringToGroup(((Istruction)(group.get(i).getIstr().get(j))).getMyGroup())).getDimension().getdH());
@@ -407,13 +407,14 @@ public class flowchart {
 					x1=(int) ((stringToGroup(((Istruction)(group.get(i).getIstr().get(j))).getMyGroup())).getDimension().getX());
 					System.out.println("x1 "+x1+" y1 "+y1+" y2 "+y2);
 					links.add(new Line(x1+shiftX,y1+shiftY,x1+shiftX,y2+shiftY));
+					y1=(int) (stringToGroup(((Istruction)(group.get(i).getIstr().get(j))).getMyGroup())).getDimension().getY();
+					y2=y1-blockDistance;
+					links.add(new Line(x1+shiftX,y1+shiftY,x1+shiftX,y2+shiftY));
 				}
-			}	
-			
-		
+			}
 		}
-		//inserisco gli ovali inizio e fine
 
+		//inserisco gli ovali inizio e fine
 		a1=new InitialBlock((int)(group.get(0).getDimension().getX()+shiftX-blockWidth/2),(int)(group.get(0).getDimension().getY()-blockHeight-blockDistance+shiftY),blockWidth,blockHeight,"Inizio "+group.get(0).getHeader());
 		blocks.add(a1);
 		links.add(new Line((int)(group.get(0).getDimension().getX()+shiftX),(int)(group.get(0).getDimension().getY()-blockDistance+shiftY),(int)(group.get(0).getDimension().getX()+shiftX),(int)(group.get(0).getDimension().getY()+shiftY)));
@@ -429,7 +430,7 @@ public class flowchart {
 	{
 		for(int z=0;z<group.size();z++)
 		{
-			if(group.get(z).getFather()!=null)	
+			if(group.get(z).getFather()!=null)
 				if(group.get(z).getFather().equals(father.getName())) //cerco i figli
 				{
 					if(group.get(z).getPosition().equals(side))
@@ -502,7 +503,7 @@ public class flowchart {
 		for(int j=0;j<gruppo.getIstr().size();j++)
 		{
 
-			if(((Istruction)(gruppo.getIstr().get(j))).getMyGroup()==null)  
+			if(((Istruction)(gruppo.getIstr().get(j))).getMyGroup()==null)
 			{
 				actual_height+=blockHeight+blockDistance;
 			}
