@@ -56,30 +56,30 @@ public class flowchart {
 		group.get(0).setIstr(new Istruction("ifdiprova","rombo","ciao","g2"));
 		group.get(0).setIstr(new Istruction("last","mao","1ciao"));
 		
-		//group.get(0).setIstr(new Istruction("last","1ciao","1ciao"));
-		//group.get(0).setIstr(new Istruction("last","romboide","1ciao"));
-		//group.get(0).setIstr(new Istruction("last","1ciao","1ciao"));
+		group.get(0).setIstr(new Istruction("last","1ciao","1ciao"));
+		group.get(0).setIstr(new Istruction("last","romboide","1ciao"));
+		group.get(0).setIstr(new Istruction("last","1ciao","1ciao"));
 
 
 		group_insert=new Group("g2", true, "center", "if(io=io)", "if", "g1");
 		group.add(group_insert);
 
 
-		group_insert=new Group("g3", true, "left", "", "init", "g2");
+		group_insert=new Group("g3", true, "left", "hj", "init", "g2");
 		group.add(group_insert);
 		group.get(2).setIstr(new Istruction("G3_1","gsfd","ciao"));
-		//group.get(2).setIstr(new Istruction("g3_2","romboide","ciao"));
-		//group.get(2).setIstr(new Istruction("g3_3","gsfd","ciao"));
+		group.get(2).setIstr(new Istruction("g3_2","jkl","ciao"));
+		group.get(2).setIstr(new Istruction("g3_3","gsfd","ciao"));
 
 		group_insert=new Group("g4", true, "right", "while(io=io)", "init", "g2");
 		group.add(group_insert);
 		group.get(3).setIstr(new Istruction("g4_1","gsfd","ciao"));
-		/*group.get(3).setIstr(new Istruction("g4_2","romboide","ciao"));
+		group.get(3).setIstr(new Istruction("g4_2","jjik","ciao"));
 		group.get(3).setIstr(new Istruction("ifdi2","rombo","ciao","g5"));
 
 
 
-		group_insert=new Group("g5", true, "center", "while(io=io)", "while", "g4");
+		group_insert=new Group("g5", true, "center", "while(io=io)", "dowhile", "g4");
 		group.add(group_insert);
 
 
@@ -87,7 +87,7 @@ public class flowchart {
 		group.add(group_insert);
 		//group.get(5).setIstr(new Istruction("ifdg7","rombo","ciao","g7"));
 		group.get(5).setIstr(new Istruction("g6_1","gsfd","ciao"));
-		group.get(5).setIstr(new Istruction("g6_2","gsfd","ciao"));*/
+		group.get(5).setIstr(new Istruction("g6_2","gsfd","ciao"));
 
 
 		/*group_insert=new Group("g7", true, "center", "dowhile", "dowhile", "g6");
@@ -232,7 +232,7 @@ public class flowchart {
 			/*
 			 * Creo i blocchi. Specifico (x,y,w,h,testo)
 			 */
-			a1 = new ActionBlock(b_x-b_w_l,b_y,b_w,b_h,b_nome);
+			/*a1 = new ActionBlock(b_x-b_w_l,b_y,b_w,b_h,b_nome);
 			if(i==0)
 				a1.setBlockColor(Color.MAGENTA);
 			if(i==1)
@@ -247,7 +247,7 @@ public class flowchart {
 				a1.setBlockColor(Color.GRAY);
 			if(i==6)
 				a1.setBlockColor(Color.PINK);
-			blocks.add(a1);
+			blocks.add(a1);*/
 
 
 			//devo solo instanziare i blocchi perchè il gruppo dove sono contenuti l'ho instanziato appena sopra
@@ -393,11 +393,26 @@ public class flowchart {
 				}
 			}*/
 			
+			//link sotto ogni gruppo in un gruppo init
+		    int x1=0 , y1=0, x2=0,y2=0;
+			for(int j=0;j<group.get(i).getIstr().size();j++)
+			{
+				if(((Istruction)(group.get(i).getIstr().get(j))).getMyGroup()!=null)  
+				{
+					System.out.println("------- "+(stringToGroup(((Istruction)(group.get(i).getIstr().get(j))).getMyGroup())).getName());
+					y1=(int) ((stringToGroup(((Istruction)(group.get(i).getIstr().get(j))).getMyGroup())).getDimension().getY()+(stringToGroup(((Istruction)(group.get(i).getIstr().get(j))).getMyGroup())).getDimension().getdH());
+					y2=y1+blockDistance;
+					x1=(int) ((stringToGroup(((Istruction)(group.get(i).getIstr().get(j))).getMyGroup())).getDimension().getX());
+					System.out.println("x1 "+x1+" y1 "+y1+" y2 "+y2);
+					links.add(new Line(x1,y1,x1,y2));
+				}
+			}	
+			
 		
 		}
 		//inserisco gli ovali inizio e fine
 
-		a1=new InitialBlock((int)(group.get(0).getDimension().getX()+shiftX-blockWidth/2),(int)(group.get(0).getDimension().getY()-blockHeight-blockDistance+shiftY),blockWidth,blockHeight,"Inizio");
+		a1=new InitialBlock((int)(group.get(0).getDimension().getX()+shiftX-blockWidth/2),(int)(group.get(0).getDimension().getY()-blockHeight-blockDistance+shiftY),blockWidth,blockHeight,"Inizio "+group.get(0).getHeader());
 		blocks.add(a1);
 		links.add(new Line((int)(group.get(0).getDimension().getX()+shiftX),(int)(group.get(0).getDimension().getY()-blockDistance+shiftY),(int)(group.get(0).getDimension().getX()+shiftX),(int)(group.get(0).getDimension().getY()+shiftY)));
 		//blocco finale
@@ -435,10 +450,11 @@ public class flowchart {
 				if(stringToGroup(((Istruction)(gruppo.getIstr().get(j))).getMyGroup()).getGroupType().equals("if"))
 				{
 					//cerco i 2 figli e li aggiorno
-					for(int z=j+1;z<group.size();z++)
+					for(int z=j;z<group.size();z++)
 					{
 						if(group.get(z).getFather().equals(stringToGroup(((Istruction)(gruppo.getIstr().get(j))).getMyGroup()).getName())) //cerco i figli
-							group.get(z).getDimension().sety(actual_y+blockHeight+blockDistance);
+							{group.get(z).getDimension().sety(actual_y+blockHeight+blockDistance);
+							System.out.println("+*+*+*+*+* "+group.get(z).getName());}
 					}
 				}
 				if(stringToGroup(((Istruction)(gruppo.getIstr().get(j))).getMyGroup()).getGroupType().equals("for")||stringToGroup(((Istruction)(gruppo.getIstr().get(j))).getMyGroup()).getGroupType().equals("while"))
@@ -575,7 +591,7 @@ public class flowchart {
 							j=group.size();
 					}
 				}
-				y=y+fatherTemp.getDimension().getdH(); //    +fatherTemp.getDimension().getdH()
+				y=y+fatherTemp.getDimension().getY(); //    +fatherTemp.getDimension().getdH()
 				x=fatherTemp.getDimension().getX();
 			}
 		}
