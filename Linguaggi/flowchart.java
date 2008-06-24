@@ -64,7 +64,7 @@ public class flowchart {
 		group_insert=new Group("g2", true, "center", "if(io=io)", "if", "g1");
 		group.add(group_insert);
 
-
+ 
 		group_insert=new Group("g3", true, "left", "hj", "init", "g2");
 		group.add(group_insert);
 		group.get(2).setIstr(new Istruction("ifdi24","rombo","ciao","g4"));
