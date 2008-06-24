@@ -404,7 +404,7 @@ public class flowchart {
 					y2=y1+blockDistance;
 					x1=(int) ((stringToGroup(((Istruction)(group.get(i).getIstr().get(j))).getMyGroup())).getDimension().getX());
 					System.out.println("x1 "+x1+" y1 "+y1+" y2 "+y2);
-					links.add(new Line(x1,y1,x1,y2));
+					links.add(new Line(x1+shiftX,y1+shiftY,x1+shiftX,y2+shiftY));
 				}
 			}	
 			
