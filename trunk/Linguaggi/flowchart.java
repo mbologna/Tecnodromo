@@ -67,28 +67,30 @@ public class flowchart {
 
 		group_insert=new Group("g3", true, "left", "hj", "init", "g2");
 		group.add(group_insert);
+		group.get(2).setIstr(new Istruction("ifdi24","rombo","ciao","g4"));
 		group.get(2).setIstr(new Istruction("G3_1","gsfd","ciao"));
 		group.get(2).setIstr(new Istruction("g3_2","jkl","ciao"));
 		group.get(2).setIstr(new Istruction("g3_3","gsfd","ciao"));
 
-		group_insert=new Group("g4", true, "right", "while(io=io)", "init", "g2");
+		group_insert=new Group("g4", true, "center", "while(io=io)", "if", "g3");
 		group.add(group_insert);
-		group.get(3).setIstr(new Istruction("g4_1","gsfd","ciao"));
-		group.get(3).setIstr(new Istruction("g4_2","jjik","ciao"));
-		group.get(3).setIstr(new Istruction("ifdi2","rombo","ciao","g5"));
+		
 
-
-
-		group_insert=new Group("g5", true, "center", "while(io=io)", "dowhile", "g4");
+		group_insert=new Group("g5", true, "left", "while(io=io)", "init", "g4");
 		group.add(group_insert);
+		group.get(4).setIstr(new Istruction("g6_1","gsfd","ciao"));
 
-
-		group_insert=new Group("g6", true, "center", "", "init", "g5");
+		group_insert=new Group("g6", true, "right", "dgfd", "init", "g4");
 		group.add(group_insert);
 		//group.get(5).setIstr(new Istruction("ifdg7","rombo","ciao","g7"));
 		group.get(5).setIstr(new Istruction("g6_1","gsfd","ciao"));
 		group.get(5).setIstr(new Istruction("g6_2","gsfd","ciao"));
-
+		
+		group_insert=new Group("g7", true, "right", "fd", "init", "g2");
+		group.add(group_insert);
+		//group.get(5).setIstr(new Istruction("ifdg7","rombo","ciao","g7"));
+		group.get(6).setIstr(new Istruction("g6_1","gsfd","ciao"));
+		group.get(6).setIstr(new Istruction("g6_2","gsfd","ciao"));
 
 		/*group_insert=new Group("g7", true, "center", "dowhile", "dowhile", "g6");
 		group.add(group_insert);
@@ -452,6 +454,7 @@ public class flowchart {
 					//cerco i 2 figli e li aggiorno
 					for(int z=j;z<group.size();z++)
 					{
+						if(group.get(z).getFather()!=null)
 						if(group.get(z).getFather().equals(stringToGroup(((Istruction)(gruppo.getIstr().get(j))).getMyGroup()).getName())) //cerco i figli
 							{group.get(z).getDimension().sety(actual_y+blockHeight+blockDistance);
 							System.out.println("+*+*+*+*+* "+group.get(z).getName());}
