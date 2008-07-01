@@ -6,7 +6,6 @@ import it.unibg.cs.flowchart2svg.blocks.GeneralBlock;
 import it.unibg.cs.flowchart2svg.blocks.IOBlock;
 import it.unibg.cs.flowchart2svg.blocks.InitialBlock;
 import it.unibg.cs.flowchart2svg.labels.Label;
-import it.unibg.cs.flowchart2svg.links.Arrow;
 import it.unibg.cs.flowchart2svg.links.Line;
 
 import java.util.LinkedList;
@@ -180,8 +179,6 @@ public class flowchart {
 			}
 
 		}
-
-		int l_x1 , l_y1, l_x2,l_y2,r_x1 , r_y1, r_x2,r_y2;
 		//	setto lo shift per le x e y
 		shiftY=100;
 		shiftX=(int) (group.get(0).getDimension().getdL()+20);
@@ -279,6 +276,16 @@ public class flowchart {
 						{
 							actual_y+=(stringToGroup(((Istruction)(group.get(i).getIstr().get(h))).getMyGroup())).getDimension().getdH()+blockDistance;
 						}
+					}
+				}
+				//se è un gruppo else senza istruzioni disegna il collegamento
+				if(group.get(i).getFather()!=null){
+					if((stringToGroup(group.get(i).getFather()).getGroupType().equals("if"))&&(group.get(i).getPosition().equals("right"))&&(group.get(i).getIstr().size()==0)){
+						int x,y1,y2;
+						x=b_x;
+						y1=b_y;
+						y2=y1+blockDistance;
+						links.add(new Line(x,y1,x,y2));
 					}
 				}
 			}
@@ -397,7 +404,7 @@ public class flowchart {
 			}*/
 
 			//link sotto e sopra ogni gruppo in un gruppo init
-		    int x1,x2,y1,y2;
+		    int x1,y1,y2;
 			for(int j=0;j<group.get(i).getIstr().size();j++)
 			{
 				if(((Istruction)(group.get(i).getIstr().get(j))).getMyGroup()!=null)
