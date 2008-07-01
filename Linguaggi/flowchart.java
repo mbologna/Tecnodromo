@@ -51,28 +51,28 @@ public class flowchart {
 
 		Group group_insert=new Group("g1", true, "center", "main", "init", null);
 		group.add(group_insert);
-		group.get(0).setIstr(new Istruction("last","1ciao","1ciao"));
-		group.get(0).setIstr(new Istruction("last","1ciao","1ciao"));
+		group.get(0).setIstr(new Istruction("g1_1","1ciao","1ciao"));
+		group.get(0).setIstr(new Istruction("g1_2","1ciao","1ciao"));
 		group.get(0).setIstr(new Istruction("ifdiprova","rombo","ciao","g2"));
-		group.get(0).setIstr(new Istruction("last","mao","1ciao"));
+		group.get(0).setIstr(new Istruction("g1_3","mao","1ciao"));
 
-		group.get(0).setIstr(new Istruction("last","1ciao","1ciao"));
-		group.get(0).setIstr(new Istruction("last","romboide","1ciao"));
-		group.get(0).setIstr(new Istruction("last","1ciao","1ciao"));
+		group.get(0).setIstr(new Istruction("g1_4","1ciao","1ciao"));
+		group.get(0).setIstr(new Istruction("g1_5","romboide","1ciao"));
+		group.get(0).setIstr(new Istruction("g1_6","1ciao","1ciao"));
 
 
-		group_insert=new Group("g2", true, "center", "if(io=io)", "if", "g1");
+		group_insert=new Group("g2", true, "center", "if(x>y)", "if", "g1");
 		group.add(group_insert);
 
 
 		group_insert=new Group("g3", true, "left", "hj", "init", "g2");
 		group.add(group_insert);
-		group.get(2).setIstr(new Istruction("ifdi24","rombo","ciao","g4"));
+		//group.get(2).setIstr(new Istruction("ifdi24","rombo","ciao","g4"));
 		group.get(2).setIstr(new Istruction("G3_1","gsfd","ciao"));
-		group.get(2).setIstr(new Istruction("g3_2","jkl","ciao"));
+		group.get(2).setIstr(new Istruction("g3_2","romboide","ciao"));
 		group.get(2).setIstr(new Istruction("g3_3","gsfd","ciao"));
 
-		group_insert=new Group("g4", true, "center", "while(io=io)", "if", "g3");
+		/*group_insert=new Group("g4", true, "center", "if(a==b)", "if", "g3");
 		group.add(group_insert);
 
 
@@ -84,13 +84,14 @@ public class flowchart {
 		group.add(group_insert);
 		//group.get(5).setIstr(new Istruction("ifdg7","rombo","ciao","g7"));
 		group.get(5).setIstr(new Istruction("g6_1","gsfd","ciao"));
-		group.get(5).setIstr(new Istruction("g6_2","gsfd","ciao"));
+		group.get(5).setIstr(new Istruction("g6_2","gsfd","ciao"));*/
 
-		group_insert=new Group("g7", true, "right", "fd", "init", "g2");
+		group_insert=new Group("g4", true, "right", "fd", "init", "g2");
 		group.add(group_insert);
 		//group.get(5).setIstr(new Istruction("ifdg7","rombo","ciao","g7"));
-		group.get(6).setIstr(new Istruction("g6_1","gsfd","ciao"));
-		group.get(6).setIstr(new Istruction("g6_2","gsfd","ciao"));
+		/*group.get(6).setIstr(new Istruction("g6_1","gsfd","ciao"));
+		group.get(6).setIstr(new Istruction("g6_2","romboide","ciao"));
+		*/
 
 		/*group_insert=new Group("g7", true, "center", "dowhile", "dowhile", "g6");
 		group.add(group_insert);
